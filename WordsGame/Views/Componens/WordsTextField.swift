@@ -16,9 +16,12 @@ struct WordsTextField: View {
         TextField(placeholder,
                   text: word)
         .font(.title)
+        .foregroundColor(.black)
         .padding(20)
         .background(.white)
-        .cornerRadius(12)    }
+        .cornerRadius(12)
+        
+    }
 }
 
 

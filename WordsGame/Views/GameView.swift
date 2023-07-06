@@ -61,10 +61,11 @@ struct GameView: View {
                            height: screen.width / 2.2)
                     .background(Color("FirstPlayer"))
                     .cornerRadius(26)
-                    .shadow(color: .red,
+                    .shadow(color: viewModel.isFirst ? .red : .clear,
                             radius: 4,
                             x: 0,
                             y: 0)
+                    
                 
                 VStack {
                     
@@ -83,7 +84,7 @@ struct GameView: View {
                            height: screen.width / 2.2)
                     .background(Color("SecondColor"))
                     .cornerRadius(26)
-                    .shadow(color: .purple,
+                    .shadow(color: viewModel.isFirst ? .clear : .purple,
                             radius: 4,
                             x: 0,
                             y: 0)
@@ -133,6 +134,13 @@ struct GameView: View {
             }
 
             List {
+                
+                ForEach(0 ..< self.viewModel.words.count, id: \.description) { item in
+                    WordCell(word: self.viewModel.words[item])
+                        .background(item % 2 == 0 ? Color("CustomRed") : Color("CustomPurple"))
+                        .listRowInsets(EdgeInsets())
+                    
+                }
                 
             }.listStyle(.plain)
                 .frame(maxWidth: .infinity,
